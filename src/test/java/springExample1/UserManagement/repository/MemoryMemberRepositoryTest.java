@@ -14,6 +14,7 @@ class MemoryMemberRepositoryTest {
 
     MemoryMemberRepository repository = new MemoryMemberRepository();
 
+    // 테스트 케이스마다 에러나지 않게 메소드가 테스트를 끝내면 비워줌
     @AfterEach
     public void afterEach(){
         repository.clearStore();
