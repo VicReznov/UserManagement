@@ -1,12 +1,9 @@
 package springExample1.UserManagement;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springExample1.UserManagement.repository.*;
 import springExample1.UserManagement.service.MemberService;
-
-import javax.persistence.EntityManager;
 
 @Configuration
 public class SpringConfig {
@@ -18,27 +15,30 @@ public class SpringConfig {
 //        this.dataSource = dataSource;
 //    }
 
+    private final MemberRepository memberRepository;
 
-    private EntityManager em;
-
-    @Autowired
-    public SpringConfig(EntityManager em) {
-        this.em = em;
+    public SpringConfig(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
     }
+
+
+//    private EntityManager em;
+
+
 
     @Bean
     public MemberService memberService() {
-        return new MemberService(memberRepository());
+        return new MemberService(memberRepository);
     }
 
     /*
-    Memory -> Jdbc
+    Memory -> Jdbc 바꿈
      */
-    @Bean
-    public MemberRepository memberRepository() {
+//    @Bean
+//    public MemberRepository memberRepository() {
 //        return new MemoryMemberRepository();
 //        return new JdbcMemberRepository(dataSource);
 //        return new JdbcTemplateMemberRepository(dataSource);
-        return new JpaMemberRepository(em);
-    }
+//        return new JpaMemberRepository(em);
+//    }
 }
