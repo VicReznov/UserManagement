@@ -2,6 +2,7 @@ package springExample1.UserManagement.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import springExample1.UserManagement.domain.Member;
 import springExample1.UserManagement.repository.MemberRepository;
 import springExample1.UserManagement.repository.MemoryMemberRepository;
@@ -9,6 +10,7 @@ import springExample1.UserManagement.repository.MemoryMemberRepository;
 import java.util.List;
 import java.util.Optional;
 
+@Transactional // JPA 사용하려면 필요함 -> 특히 join()에서
 public class MemberService {
 
     private final MemberRepository memberRepository;
